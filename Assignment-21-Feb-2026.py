@@ -14,7 +14,7 @@ class DomesticFlight(Flight):
   
   def calculate_price(self):
     final_price = self.base_price + (self.base_price * self.tax_percent / 100)
-    return int(final_price)
+    return final_price
 
 class BookingFlight(DomesticFlight):
   def __init__(self, flight_no, base_price, total_seats, tax_percent, booked_seats):
