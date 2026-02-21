@@ -34,7 +34,7 @@ class BookingFlight(DomesticFlight):
     if self.check_seat_availability():
       print(f'Total Price is {self.calculate_price() * self.booked_seats}')
 
-bf = BookingFlight("IND-101", 8400, 32, 10, 32)
-bf.check_seat_availability()
-bf.book_seats()
-bf.get_final_price()
+book_flight = BookingFlight("IND-101", 8400, 32, 10, 32)
+book_flight.check_seat_availability()
+book_flight.book_seats()
+book_flight.get_final_price()
