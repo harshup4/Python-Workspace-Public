@@ -1,0 +1,36 @@
+class Flight:
+  def __init__(self, flight_no, base_price, total_seats):
+    self.flight_no=flight_no
+    self.base_price=base_price
+    self.total_seats=total_seats
+
+  def display_flight_info(self):
+    print(f'{self.flight_no} has total seats: {self.total_seats} and its base price is {self.base_price}')
+
+class DomesticFlight(Flight):
+  def __init__(self, flight_no, base_price, total_seats, tax_percent):
+    super().__init__(flight_no, base_price, total_seats)
+    self.tax_percent=tax_percent
+  
+  def calculate_price(self):
+    final_price = self.base_price + (self.base_price * self.tax_percent / 100)
+    return int(final_price)
+
+class BookingFlight(DomesticFlight):
+  def __init__(self, flight_no, base_price, total_seats, tax_percent, booked_seats):
+    super().__init__(flight_no, base_price, total_seats, tax_percent)
+    self.booked_seats=booked_seats
+  
+  def check_seat_availability(self):
+    if self.total_seats>self.booked_seats:
+      print("Seats are available")
+  def book_seats(self):
+    left_over = self.total_seats-self.booked_seats
+    print(f"Left over seats after booking is {left_over}")
+  def get_final_price(self):
+    print(self.calculate_price() * self.booked_seats)
+
+bf = BookingFlight("ID-101", 8400, 32, 10, 2)
+bf.check_seat_availability()
+bf.book_seats()
+bf.get_final_price()
