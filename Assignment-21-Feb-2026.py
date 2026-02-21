@@ -22,15 +22,19 @@ class BookingFlight(DomesticFlight):
     self.booked_seats=booked_seats
   
   def check_seat_availability(self):
-    if self.total_seats>self.booked_seats:
-      print("Seats are available")
-  def book_seats(self):
-    left_over = self.total_seats-self.booked_seats
-    print(f"Left over seats after booking is {left_over}")
-  def get_final_price(self):
-    print(self.calculate_price() * self.booked_seats)
+    return self.total_seats>=self.booked_seats
 
-bf = BookingFlight("ID-101", 8400, 32, 10, 2)
+  def book_seats(self):
+    if self.check_seat_availability():
+      left_over = self.total_seats-self.booked_seats
+      print(f"Left over seats after booking is {left_over}")
+    else:
+      print('Requested no. of seats are not available')
+  def get_final_price(self):
+    if self.check_seat_availability():
+      print(f'Total Price is {self.calculate_price() * self.booked_seats}')
+
+bf = BookingFlight("IND-101", 8400, 32, 10, 32)
 bf.check_seat_availability()
 bf.book_seats()
 bf.get_final_price()
